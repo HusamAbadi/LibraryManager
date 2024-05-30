@@ -10,7 +10,7 @@ function fetchAuthorsByPublisher(publisherId) {
             // Create and append option elements
             let firstAuthorId = null; // Variable to store the first authorID
 
-            for (const authorof data) {
+            for (const authorof of data) {
                 const option = document.createElement("option");
                 option.value = author.id;
                 option.text = author.name;

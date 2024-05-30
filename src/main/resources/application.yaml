@@ -16,11 +16,3 @@ spring:
     view:
       prefix: /WEB-INF/views/
       suffix: .html
-  server:
-    error:
-      whitelabel:
-        enabled: false
-
-  security:
-    basic:
-      enabled: true

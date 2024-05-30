@@ -35,7 +35,7 @@ public class PublisherService {
         if (existingPublisher.isPresent()) {
             Publisher publisher = existingPublisher.get();
             publisher.setName(updatedPublisher.getName());
-            publisher.setOrganization(updatedPublisher.getOrganization());
+            publisher.setPublisher(updatedPublisher.getPublisher());
             return publisherRepository.save(publisher);
         }
         return null;

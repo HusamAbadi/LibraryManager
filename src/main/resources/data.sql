@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS publishers (
                                           id BIGINT PRIMARY KEY AUTO_INCREMENT,
                                           name VARCHAR(255) NOT NULL,
-                                          organization VARCHAR(255) NOT NULL
+                                          publisher VARCHAR(255) NOT NULL
 );
 
 -- Create authors table
@@ -41,9 +41,9 @@ CREATE TABLE IF NOT EXISTS renters (
 
 
 -- Insert sample data for publishers
-INSERT INTO publishers (name, organization) VALUES ('Apple', 'Apple Inc. is an American multinational technology company headquartered in Cupertino, California.');
-INSERT INTO publishers (name, organization) VALUES ('Google', 'Google LLC is an American multinational technology company focusing on artificial intelligence and online advertising.');
-INSERT INTO publishers (name, organization) VALUES ('Facebook', 'Meta Platforms, Inc., formerly named Facebook, Inc., and TheFacebook, Inc., is an American multinational technology conglomerate based in Menlo Park, California. ');
+INSERT INTO publishers (name, publisher) VALUES ('Apple', 'Apple Inc. is an American multinational technology company headquartered in Cupertino, California.');
+INSERT INTO publishers (name, publisher) VALUES ('Google', 'Google LLC is an American multinational technology company focusing on artificial intelligence and online advertising.');
+INSERT INTO publishers (name, publisher) VALUES ('Facebook', 'Meta Platforms, Inc., formerly named Facebook, Inc., and TheFacebook, Inc., is an American multinational technology conglomerate based in Menlo Park, California. ');
 
 -- Insert sample data for authors
 INSERT INTO authors (name, expertise, publisher_id) VALUES ('Max', 'Web developer', 1);

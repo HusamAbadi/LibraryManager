@@ -25,7 +25,7 @@
         <tr th:each="publisher: ${publishers}">
           <td th:text="${publisher.id}"></td>
           <td th:text="${publisher.name}"></td>
-          <td th:text="${publisher.organization}"></td>
+          <td th:text="${publisher.publisher}"></td>
           <td>
             <form id="deleteForm">
               <button>
@@ -44,7 +44,7 @@
 
     <form th:action="@{/api/publishers}" th:object="${publisher}" method="POST">
       <div class="form-group">
-        <label for="name">Organization name</label>
+        <label for="name">Publisher name</label>
         <input
           type="text"
           id="name"
@@ -59,17 +59,17 @@
         >
       </div>
       <div class="form-group">
-        <label for="organization">Bio</label>
+        <label for="publisher">Bio</label>
         <input
           type="text"
-          id="organization"
-          name="organization"
+          id="publisher"
+          name="publisher"
           placeholder="Video game developer & publisher "
           required
           maxlength="100"
         />
         <small class="error-message"
-          >Please enter a valid organization (max 100 characters).</small
+          >Please enter a valid publisher (max 100 characters).</small
         >
       </div>
       <div class="form-group">
