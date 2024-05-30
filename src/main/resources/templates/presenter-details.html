@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AuthorDetails</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<h1>AuthorDetails</h1>
+<a href="/api/authors">Back to Authors</a>
+
+<h2>AuthorInformation</h2>
+<ul>
+  <li><strong>ID:</strong> [[${author.id}]]</li>
+  <li><strong>Name:</strong> [[${author.name}]]</li>
+  <li><strong>Expertise:</strong> [[${author.expertise}]]</li>
+  <li>
+    <strong>Publisher:</strong>
+    <a th:href="@{'/api/publishers/' + ${author.publisher.id}}">[[${author.publisher.name}]]</a>
+
+  </li>
+</ul>
+</body>
+</html>

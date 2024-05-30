@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Book Manager</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <h1>Book Manager</h1>
+    <a href="/">Back to Homepage 🏠</a>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Max num. of Renters</th>
+          <th>Publisher</th>
+          <th>Author</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Iterate over the list of books -->
+        <tr th:each="book : ${books}">
+          <td>
+            <a th:href="@{/books/{id}(id=${book.id})}">
+              <span th:text="${book.name}"></span>
+            </a>
+          </td>
+          <td th:text="${book.description}"></td>
+          <td th:text="${#dates.format(book.date, 'yyyy-MM-dd')}"></td>
+          <td th:text="${book.maxRenters}"></td>
+          <td>
+            <a th:href="@{/publishers/{id}(id=${book.publisher.id})}">
+              <span th:text="${book.publisher.name}"></span>
+            </a>
+          </td>
+          <td>
+            <a th:href="@{/authors/{id}(id=${book.author.id})}">
+              <span th:text="${book.author.name}"></span>
+            </a>
+          </td>
+
+          <td>
+            <form id="deleteForm">
+              <input type="hidden" name="_method" value="DELETE" />
+              <button>
+                <a
+                  style="border: none"
+                  th:href="@{/books/{id}/delete(id=${book.id})}"
+                  class="btn btn-danger"
+                  >Delete</a
+                >
+              </button>
+            </form>
+            <form id="editForm">
+              <input type="hidden" name="_method" value="PUT" />
+              <button disabled>
+                <a
+                  style="border: none"
+                  th:href="@{/books/{id}/edit(id=${book.id})}"
+                >
+                  Edit</a
+                >
+              </button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <form th:action="@{/api/books}" method="POST">
+      <div class="form-group">
+        <label for="name">Book Name</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Book Name"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Book Description</label>
+        <input
+          type="text"
+          id="description"
+          name="description"
+          placeholder="Book Description"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input
+          type="date"
+          id="date"
+          name="date"
+          placeholder="2023-06-10"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="maxRenters">Max num. of Renters</label>
+        <input
+          type="number"
+          id="maxRenters"
+          name="maxRenters"
+          placeholder="100"
+          required
+          min="2"
+        />
+      </div>
+      <div class="form-group">
+        <label for="publisher">Publisher</label>
+        <select
+          id="publisher"
+          name="publisher.id"
+          onchange="fetchAuthorsByPublisher(this.value)"
+        >
+          <option
+            th:each="publisher: ${publishers}"
+            th:value="${publisher.id}"
+            th:text="${publisher.name}"
+          ></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="author">Author</label>
+        <select
+          id="author"
+          name="author.id"
+          data-current-author="1"
+        ></select>
+      </div>
+      <div class="form-group">
+        <button type="submit">Create Book</button>
+      </div>
+    </form>
+
+    <script src="/script.js"></script>
+
+    <script>
+      var dateInput = document.getElementById('date');
+      var currentDate = new Date().toISOString().split('T')[0];
+      dateInput.setAttribute('min', currentDate);
+    </script>
+  </body>
+</html>
