@@ -63,6 +63,6 @@ VALUES ('React Dev book', 'Upcoming React Conferences in 2023', 3, '2023-06-10',
 
 
 -- Insert sample data for renters
-INSERT INTO renters (name, email, book_id) VALUES ('Wisam abadi', 'wisam@example.com', 1);
+INSERT INTO renters (name, email, book_id) VALUES ('Husam abadi', 'husam@example.com', 1);
 INSERT INTO renters (name, email, book_id) VALUES ('John will', 'jhon@example.com', 1);
 
