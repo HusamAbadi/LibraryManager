@@ -1,10 +1,10 @@
-package com.husam.booksmanager;
+package com.husam.librarymanager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class BooksManagerApplicationTests {
+@SpringBootTest(classes = LibraryManagerApplication.class)
+class LibraryManagerApplicationTests {
 
 	@Test
 	void contextLoads() {
