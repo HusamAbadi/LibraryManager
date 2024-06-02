@@ -1,6 +1,5 @@
 package com.wisam.librarymanager.service;
 
-import com.wisam.librarymanager.repository.PublisherRepository;
 import com.wisam.librarymanager.entities.Author;
 import com.wisam.librarymanager.entities.Publisher;
 import com.wisam.librarymanager.repository.AuthorRepository;

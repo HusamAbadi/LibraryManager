@@ -1,9 +1,7 @@
 package com.wisam.librarymanager.controller.rest;
 
-import ch.qos.logback.core.model.Model;
 
 import com.wisam.librarymanager.entities.Book;
-import com.wisam.librarymanager.entities.Publisher;
 import com.wisam.librarymanager.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
