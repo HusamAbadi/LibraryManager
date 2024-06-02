@@ -1,8 +1,7 @@
-package com.wisam.librarymanager.controller.rest;
+package com.husam.librarymanager.controller.rest;
 
-
-import com.wisam.librarymanager.entities.Book;
-import com.wisam.librarymanager.service.BookService;
+import com.husam.librarymanager.entities.Book;
+import com.husam.librarymanager.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

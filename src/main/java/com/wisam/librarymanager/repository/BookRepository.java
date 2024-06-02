@@ -1,9 +1,9 @@
-package com.wisam.librarymanager.repository;
+package com.husam.librarymanager.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.wisam.librarymanager.entities.Book;
+import com.husam.librarymanager.entities.Book;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
-package com.wisam.librarymanager.controller.web;
+package com.husam.librarymanager.controller.web;
 
-import com.wisam.librarymanager.service.PublisherService;
-import com.wisam.librarymanager.entities.Book;
-import com.wisam.librarymanager.entities.Publisher;
-import com.wisam.librarymanager.service.BookService;
+import com.husam.librarymanager.service.PublisherService;
+import com.husam.librarymanager.entities.Book;
+import com.husam.librarymanager.entities.Publisher;
+import com.husam.librarymanager.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

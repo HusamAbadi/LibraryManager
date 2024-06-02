@@ -1,4 +1,4 @@
-package com.wisam.librarymanager.entities;
+package com.husam.librarymanager.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;

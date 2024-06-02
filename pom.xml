@@ -9,7 +9,7 @@
 		<relativePath/>
 		<!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.wisam</groupId>
+	<groupId>com.husam</groupId>
 	<artifactId>books-manager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>books-manager</name>

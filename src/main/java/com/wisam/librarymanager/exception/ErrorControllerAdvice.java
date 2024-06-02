@@ -1,4 +1,4 @@
-package com.wisam.librarymanager.exception;
+package com.husam.librarymanager.exception;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

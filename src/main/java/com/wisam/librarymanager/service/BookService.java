@@ -1,7 +1,7 @@
-package com.wisam.librarymanager.service;
+package com.husam.librarymanager.service;
 
-import com.wisam.librarymanager.entities.Book;
-import com.wisam.librarymanager.repository.BookRepository;
+import com.husam.librarymanager.entities.Book;
+import com.husam.librarymanager.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

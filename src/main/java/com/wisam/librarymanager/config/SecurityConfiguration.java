@@ -1,4 +1,4 @@
-package com.wisam.librarymanager.config;
+package com.husam.librarymanager.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
