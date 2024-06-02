@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Books</title>
+  </head>
+  <body>
+    <h1>Books</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Publisher</th>
+          <th>Author</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Iterate over the books and display the data -->
+        <tr th:each="book : ${books}">
+          <td th:text="${book.id}"></td>
+          <td th:text="${book.name}"></td>
+          <td th:text="${book.description}"></td>
+          <td th:text="${book.publisher.name}"></td>
+          <td th:text="${book.author.name}"></td>
+          <td th:text="${book.date}"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Create Book</h2>
+    <form method="post" action="/api/books">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required /><br /><br />
+
+      <label for="description">Description:</label>
+      <input
+        type="text"
+        id="description"
+        name="description"
+        required
+      /><br /><br />
+
+      <label for="publisher">Publisher:</label>
+      <select id="publisher" name="publisher" required>
+        <!-- Iterate over the publishers and display them as options -->
+        <option
+          th:each="publisher : ${publishers}"
+          th:value="${publisher.id}"
+          th:text="${publisher.name}"
+        ></option></select
+      ><br /><br />
+
+      <label for="author">Author:</label>
+      <select id="author" name="author" required>
+        <!-- Iterate over the authors and display them as options -->
+        <option
+          th:each="author : ${authors}"
+          th:value="${author.id}"
+          th:text="${author.name}"
+        ></option></select
+      ><br /><br />
+
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required /><br /><br />
+
+      <input type="submit" value="Create" />
+    </form>
+  </body>
+</html>

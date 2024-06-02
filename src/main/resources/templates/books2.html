@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Books</title>
+  </head>
+  <body>
+    <h1>Books</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Attendees</th>
+          <th>Publisher</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#books}}
+        <tr>
+          <td>{{name}}</td>
+          <td>{{description}}</td>
+          <td>{{date}}</td>
+          <td>{{attendees}}</td>
+          <td>{{publisher.name}}</td>
+        </tr>
+        {{/books}}
+      </tbody>
+    </table>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Iterate over the books and display the data -->
+        <tr th:each="book : ${books}">
+          <td th:text="${book.id}"></td>
+          <td th:text="${book.name}"></td>
+          <td th:text="${book.description}"></td>
+          <td th:text="${book.date}"></td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>Add New Book</h2>
+    <form action="/books" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required /><br />
+
+      <label for="description">Description:</label>
+      <input type="text" id="description" name="description" required /><br />
+
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required /><br />
+
+      <label for="attendees">Attendees:</label>
+      <input type="number" id="attendees" name="attendees" required /><br />
+
+      <label for="publisher">Publisher:</label>
+      <select id="publisher" name="publisher" required>
+        {{#publishers}}
+        <option value="{{id}}">{{name}}</option>
+        {{/publishers}}</select
+      ><br />
+
+      <button type="submit">Create Book</button>
+    </form>
+  </body>
+</html>

@@ -12,7 +12,7 @@
   <tr>
     <th>Name</th>
     <th>Email</th>
-    <th>Event</th>
+    <th>Book</th>
     <th>Actions</th>
   </tr>
   </thead>
@@ -21,11 +21,11 @@
   <tr th:each="attendee : ${attendees}">
     <td th:text="${attendee.name}"></td>
     <td th:text="${attendee.email}"></td>
-    <td th:text="${attendee.event.name}"></td>
+    <td th:text="${attendee.book.name}"></td>
     <td>
       <form id="deleteForm" th:action="@{/api/attendees/{id}(id=${attendee.id})}" method="POST">
         <input type="hidden" name="_method" value="DELETE">
-        <button type="submit" onclick="deleteAttendee(event)">Delete</button>
+        <button type="submit" onclick="deleteAttendee(book)">Delete</button>
       </form>
     </td>
   </tr>
@@ -42,9 +42,9 @@
     <input type="email" id="email" name="email" placeholder="Email" required>
   </div>
   <div class="form-group">
-    <label for="eventId">Event</label>
+    <label for="eventId">Book</label>
     <select id="eventId" name="eventId">
-      <option th:each="event : ${events}" th:value="${event.id}" th:text="${event.name}"></option>
+      <option th:each="book : ${books}" th:value="${book.id}" th:text="${book.name}"></option>
     </select>
   </div>
   <div class="form-group">
@@ -53,10 +53,10 @@
 </form>
 
 <script>
-  function deleteAttendee(event) {
-    event.preventDefault();
+  function deleteAttendee(book) {
+    book.preventDefault();
     if (confirm("Are you sure you want to delete this attendee?")) {
-      const form = event.target.closest('form');
+      const form = book.target.closest('form');
       const url = form.getAttribute('action');
       const xhr = new XMLHttpRequest();
       xhr.open('DELETE', url, true);

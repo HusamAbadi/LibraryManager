@@ -84,10 +84,10 @@
     </form>
 
     <script>
-      function deleteAuthor(event) {
-        event.preventDefault();
+      function deleteAuthor(book) {
+        book.preventDefault();
         if (confirm('Are you sure you want to delete this author?')) {
-          const form = event.target.closest('form');
+          const form = book.target.closest('form');
           const url = form.getAttribute('action');
           const xhr = new XMLHttpRequest();
           xhr.open('DELETE', url, true);

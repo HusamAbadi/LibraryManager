@@ -31,23 +31,23 @@ function fetchAuthorsByPublisher(publisherId) {
 
 // Rest of the code remains the same
 
-// Event listener for the publisher selection
+// Book listener for the publisher selection
 const publisherSelect = document.getElementById('publisher');
-publisherSelect.addEventListener('change', function () {
+publisherSelect.addBookListener('change', function () {
   const selectedPublisherId = this.value;
   // Fetch author options based on the selected publisher
   fetchAuthorsByPublisher(selectedPublisherId);
 });
 
-// Trigger change event on page load to fetch initial author options
-publisherSelect.dispatchEvent(new Event('change'));
+// Trigger change book on page load to fetch initial author options
+publisherSelect.dispatchBook(new Book('change'));
 
 // Validate author to be required
 const authorSelect = document.getElementById('author');
-const createEventForm = document.getElementById('createEventForm');
-createEventForm.addEventListener('submit', function (event) {
+const createBookForm = document.getElementById('createBookForm');
+createBookForm.addBookListener('submit', function (book) {
   if (authorSelect.value === '') {
-    event.preventDefault();
+    book.preventDefault();
     alert('Author is required. Please select a author.');
   }
 });

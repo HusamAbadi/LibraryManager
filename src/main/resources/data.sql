@@ -14,15 +14,15 @@ CREATE TABLE IF NOT EXISTS authors (
                                           FOREIGN KEY (publisher_id) REFERENCES publishers(id) ON DELETE SET NULL
 );
 
--- Create events table
-CREATE TABLE IF NOT EXISTS events (
+-- Create books table
+CREATE TABLE IF NOT EXISTS books (
                                       id BIGINT PRIMARY KEY AUTO_INCREMENT,
                                       name VARCHAR(255) NOT NULL,
                                       description VARCHAR(255) NOT NULL,
                                       publisher_id BIGINT,
                                       author_id BIGINT,
                                       date DATE,
-                                      max_attendees INT,
+                                      copies_num INT,
                                       FOREIGN KEY (publisher_id) REFERENCES publishers(id) ON DELETE SET NULL,
                                       FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE SET NULL
 );
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS attendees (
                                          name VARCHAR(255) NOT NULL,
                                          email VARCHAR(255) NOT NULL,
                                          event_id BIGINT,
-                                         FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE SET NULL
+                                         FOREIGN KEY (event_id) REFERENCES books(id) ON DELETE SET NULL
 
 
 );
@@ -51,15 +51,15 @@ INSERT INTO authors (name, profession, publisher_id) VALUES ('Harper Lee', 'Nove
 INSERT INTO authors (name, profession, publisher_id) VALUES ('Stephen King', 'Novelist, short story writer, screenwriter', 3);
 
 
--- Insert sample data for events
-INSERT INTO events (name, description, publisher_id, date, max_attendees, author_id)
+-- Insert sample data for books
+INSERT INTO books (name, description, publisher_id, date, copies_num, author_id)
 VALUES ('Apple keynote', 'Keynote is a presentation software application developed as a part of the iWork productivity suite by Apple Inc.', 1, '2023-06-10', 2600, 1);
 
-INSERT INTO events (name, description, publisher_id, date, max_attendees, author_id)
+INSERT INTO books (name, description, publisher_id, date, copies_num, author_id)
 VALUES ('Google I/O', 'Google I/O is an annual developer conference held by Google in Mountain View, California.', 2, '2023-06-10', 249, 3);
 
-INSERT INTO events (name, description, publisher_id, date, max_attendees, author_id)
-VALUES ('React Dev event', 'Upcoming React Conferences in 2023', 3, '2023-06-10', 132, 2);
+INSERT INTO books (name, description, publisher_id, date, copies_num, author_id)
+VALUES ('React Dev book', 'Upcoming React Conferences in 2023', 3, '2023-06-10', 132, 2);
 
 
 -- Insert sample data for attendees
