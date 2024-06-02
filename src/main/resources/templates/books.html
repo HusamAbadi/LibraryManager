@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Book Manager</title>
+    <title>Books Archive</title>
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <h1>Book Manager</h1>
+    <h1>Books Archive</h1>
     <a href="/">Back to Homepage 🏠</a>
     <table>
       <thead>
@@ -13,7 +13,7 @@
           <th>Name</th>
           <th>Description</th>
           <th>Date</th>
-          <th>Max num. of Renters</th>
+          <th>Number Of Copies</th>
           <th>Publisher</th>
           <th>Author</th>
           <th>Actions</th>
@@ -29,7 +29,7 @@
           </td>
           <td th:text="${book.description}"></td>
           <td th:text="${#dates.format(book.date, 'yyyy-MM-dd')}"></td>
-          <td th:text="${book.maxRenters}"></td>
+          <td th:text="${book.copiesNum}"></td>
           <td>
             <a th:href="@{/publishers/{id}(id=${book.publisher.id})}">
               <span th:text="${book.publisher.name}"></span>
@@ -90,24 +90,24 @@
         />
       </div>
       <div class="form-group">
-        <label for="date">Date</label>
+        <label for="date">Date Of Publish</label>
         <input
           type="date"
           id="date"
           name="date"
-          placeholder="2023-06-10"
+          placeholder="2024-06-10"
           required
         />
       </div>
       <div class="form-group">
-        <label for="maxRenters">Max num. of Renters</label>
+        <label for="copiesNum">Number Of Copies</label>
         <input
           type="number"
-          id="maxRenters"
-          name="maxRenters"
-          placeholder="100"
+          id="copiesNum"
+          name="copiesNum"
+          placeholder="10"
           required
-          min="2"
+          min="1"
         />
       </div>
       <div class="form-group">
@@ -118,7 +118,7 @@
           onchange="fetchAuthorsByPublisher(this.value)"
         >
           <option
-            th:each="publisher: ${publishers}"
+            th:each="publisher : ${publishers}"
             th:value="${publisher.id}"
             th:text="${publisher.name}"
           ></option>
@@ -139,10 +139,10 @@
 
     <script src="/script.js"></script>
 
-    <script>
+    <!-- <script>
       var dateInput = document.getElementById('date');
       var currentDate = new Date().toISOString().split('T')[0];
       dateInput.setAttribute('min', currentDate);
-    </script>
+    </script> -->
   </body>
 </html>

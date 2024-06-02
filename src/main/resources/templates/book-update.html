@@ -23,23 +23,24 @@
         />
       </div>
       <div class="form-group">
-        <label for="date">Date</label>
+        <label for="date">Date Of Publish</label>
         <input type="date" id="date" th:field="*{date}" required />
       </div>
       <div class="form-group">
-        <label for="renters">Max num. of Renters</label>
+        <label for="renters">Number Of Copies</label>
         <input
           type="number"
           id="renters"
-          th:field="*{maxRenters}"
+          th:field="*{copiesNum}"
           required
         />
       </div>
       <div class="form-group">
         <label for="publisher">Publisher</label>
-        <select id="publisher" th:field="*{publisher.id}">
+        <select id="publisher" th:field="*{publisher.id}"
+        onchange="fetchAuthorsByPublisher(this.value)">
           <option
-            th:each="publisher: ${publishers}"
+            th:each="publisher : ${publishers}"
             th:value="${publisher.id}"
             th:text="${publisher.name}"
           ></option>
@@ -49,7 +50,7 @@
         <label for="author">Author</label>
         <select id="author" th:field="*{author.id}">
           <option
-            th:each="author: ${authors}"
+            th:each="author : ${authors}"
             th:value="${author.id}"
             th:text="${author.name}"
           ></option>
@@ -62,10 +63,10 @@
     </form>
 
     <script src="/script.js"></script>
-    <script>
+    <!-- <script>
       var dateInput = document.getElementById('date');
       var currentDate = new Date().toISOString().split('T')[0];
       dateInput.setAttribute('min', currentDate);
-    </script>
+    </script> -->
   </body>
 </html>

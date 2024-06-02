@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>PublisherDetails</title>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-<h1>PublisherDetails</h1>
-<a href="/api/publishers">Back to Publisher</a>
+  <head>
+    <title>Publisher Details</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <h1>Publisher Details</h1>
+    <a href="/api/publishers">Back to Publisher</a>
 
-<h2>PublisherInformation</h2>
-<ul>
-  <li><strong>ID:</strong> [[${publisher.id}]]</li>
-  <li><strong>Name:</strong> [[${publisher.name}]]</li>
-  <li><strong>Publisher details:</strong> [[${publisher.publisher}]]</li>
-</ul>
-
-
-
-</body>
+    <h2>Publisher Information</h2>
+    <ul>
+      <li><strong>ID:</strong> [[${publisher.id}]]</li>
+      <li><strong>Name:</strong> [[${publisher.name}]]</li>
+      <li>
+        <strong>Description details:</strong> [[${publisher.description}]]
+      </li>
+    </ul>
+  </body>
 </html>
