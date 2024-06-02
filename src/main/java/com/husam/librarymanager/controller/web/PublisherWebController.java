@@ -16,12 +16,12 @@ import java.util.Optional;
 @RequestMapping("/publishers")
 public class PublisherWebController {
     private final PublisherService publisherService;
-    private final BookService eventService;
+    private final BookService bookService;
 
     @Autowired
-    public PublisherWebController(PublisherService publisherService, BookService eventService) {
+    public PublisherWebController(PublisherService publisherService, BookService bookService) {
         this.publisherService = publisherService;
-        this.eventService = eventService;
+        this.bookService = bookService;
     }
 
     @GetMapping
@@ -43,7 +43,7 @@ public class PublisherWebController {
         Optional<Publisher> publisher = publisherService.getPublisherById(id);
         publisher.ifPresent(value -> {
             model.addAttribute("publisher", value);
-            List<Book> books = eventService.getBooksByPublisherId(id);
+            List<Book> books = bookService.getBooksByPublisherId(id);
             model.addAttribute("books", books);
         });
         return publisher.isPresent() ? "publisher-details" : "error";
@@ -51,7 +51,7 @@ public class PublisherWebController {
 
     @GetMapping("/{id}/books")
     public String getBooksByPublisherId(@PathVariable Long id, Model model) {
-        List<Book> books = eventService.getBooksByPublisherId(id);
+        List<Book> books = bookService.getBooksByPublisherId(id);
         model.addAttribute("books", books);
         return "publisher-books";
     }

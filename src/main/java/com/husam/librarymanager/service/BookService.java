@@ -10,45 +10,45 @@ import java.util.Optional;
 
 @Service
 public class BookService {
-    private final BookRepository eventRepository;
+    private final BookRepository bookRepository;
 
     @Autowired
-    public BookService(BookRepository eventRepository) {
-        this.eventRepository = eventRepository;
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
     }
 
     public List<Book> getAllBooks() {
-        return eventRepository.findAll();
+        return bookRepository.findAll();
     }
 
     public Optional<Book> getBookById(Long id) {
-        return eventRepository.findById(id);
+        return bookRepository.findById(id);
     }
 
     public Book createBook(Book book) {
-        return eventRepository.save(book);
+        return bookRepository.save(book);
     }
 
     public Book updateBook(Long id, Book updatedBook) {
-        Optional<Book> existingBook = eventRepository.findById(id);
+        Optional<Book> existingBook = bookRepository.findById(id);
         if (existingBook.isPresent()) {
             updatedBook.setId(id);
-            return eventRepository.save(updatedBook);
+            return bookRepository.save(updatedBook);
         }
         return null;
     }
 
     public boolean deleteBook(Long id) {
-        Optional<Book> book = eventRepository.findById(id);
+        Optional<Book> book = bookRepository.findById(id);
         if (book.isPresent()) {
-            eventRepository.deleteById(id);
+            bookRepository.deleteById(id);
             return true;
         }
         return false;
     }
 
     public List<Book> getBooksByPublisherId(Long publisherId) {
-        return eventRepository.findByPublisherId(publisherId);
+        return bookRepository.findByPublisherId(publisherId);
     }
 
 }

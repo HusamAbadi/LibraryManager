@@ -15,32 +15,31 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/renters")
 public class RenterWebController {
-    private final RenterService attendeeService;
-    private final BookService eventService;
+    private final RenterService renterService;
+    private final BookService bookService;
 
     @Autowired
-    public RenterWebController(RenterService attendeeService, BookService eventService) {
-        this.attendeeService = attendeeService;
-        this.eventService = eventService;
+    public RenterWebController(RenterService renterService, BookService bookService) {
+        this.renterService = renterService;
+        this.bookService = bookService;
     }
 
     @GetMapping
-    public String getAllAttendees(Model model) {
-        List<Renter> renters = attendeeService.getAllAttendees();
-        List<Book> books = eventService.getAllBooks();
+    public String getAllRenters(Model model) {
+        List<Renter> renters = renterService.getAllRenters();
+        List<Book> books = bookService.getAllBooks();
 
         model.addAttribute("renters", renters);
         model.addAttribute("books", books);
 
         return "renters";
     }
-
     @PostMapping
-    public String createAttendee(@ModelAttribute("renter") Renter renter, @RequestParam("eventId") Long eventId) {
-        Optional<Book> book = eventService.getBookById(eventId);
+    public String createRenter(@ModelAttribute("renter") Renter renter, @RequestParam("bookId") Long bookId) {
+        Optional<Book> book = bookService.getBookById(bookId);
         if (book.isPresent()) {
             renter.setBook(book.get());
-            attendeeService.createAttendee(renter);
+            renterService.createRenter(renter);
             return "redirect:/renters";
         } else {
             return "error";
@@ -48,21 +47,21 @@ public class RenterWebController {
     }
 
     @GetMapping("/{id}")
-    public String getAttendeeById(@PathVariable Long id, Model model) {
-        Optional<Renter> renter = attendeeService.getAttendeeById(id);
+    public String getRenterById(@PathVariable Long id, Model model) {
+        Optional<Renter> renter = renterService.getRenterById(id);
         renter.ifPresent(value -> model.addAttribute("renter", value));
         return renter.isPresent() ? "renter-details" : "error";
     }
 
     @PutMapping("/{id}")
-    public String updateAttendee(@PathVariable Long id, @ModelAttribute("renter") Renter renter) {
-        Renter updatedAttendee = attendeeService.updateAttendee(id, renter);
-        return updatedAttendee != null ? "redirect:/renters" : "error";
+    public String updateRenter(@PathVariable Long id, @ModelAttribute("renter") Renter renter) {
+        Renter updatedRenter = renterService.updateRenter(id, renter);
+        return updatedRenter != null ? "redirect:/renters" : "error";
     }
 
     @GetMapping("/{id}/delete")
-    public String deleteAttendee(@PathVariable Long id) {
-        attendeeService.deleteAttendee(id);
+    public String deleteRenter(@PathVariable Long id) {
+        renterService.deleteRenter(id);
         return "redirect:/renters";
     }
 }

@@ -25,21 +25,21 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/books")
 public class BookWebController {
-    private final BookService eventService;
+    private final BookService bookService;
     private final PublisherService publisherService;
     private final AuthorService authorService;
 
     @Autowired
-    public BookWebController(BookService eventService, PublisherService publisherService,
+    public BookWebController(BookService bookService, PublisherService publisherService,
             AuthorService authorService) {
-        this.eventService = eventService;
+        this.bookService = bookService;
         this.publisherService = publisherService;
         this.authorService = authorService;
     }
 
     @GetMapping
     public String getAllBooks(Model model) {
-        List<Book> books = eventService.getAllBooks();
+        List<Book> books = bookService.getAllBooks();
         List<Publisher> publishers = publisherService.getAllPublishers();
         List<Author> authors = authorService.getAllAuthors();
         model.addAttribute("books", books);
@@ -51,7 +51,7 @@ public class BookWebController {
 
     @GetMapping("/{id}")
     public String showBookDetails(@PathVariable("id") Long id, Model model) {
-        Optional<Book> book = eventService.getBookById(id);
+        Optional<Book> book = bookService.getBookById(id);
         if (book.isPresent()) {
             model.addAttribute("book", book.get());
             return "book-details";
@@ -63,7 +63,7 @@ public class BookWebController {
 
     @GetMapping("/{id}/edit")
     public String showEditBookForm(@PathVariable("id") Long id, Model model) {
-        Optional<Book> book = eventService.getBookById(id);
+        Optional<Book> book = bookService.getBookById(id);
         if (book.isPresent()) {
             model.addAttribute("book", book.get());
             List<Publisher> publishers = publisherService.getAllPublishers();
@@ -77,7 +77,7 @@ public class BookWebController {
 
     @GetMapping("/{id}/delete")
     public String deleteBook(@PathVariable Long id, Model model) {
-        eventService.deleteBook(id);
+        bookService.deleteBook(id);
         return "redirect:/books";
     }
 
@@ -102,7 +102,7 @@ public class BookWebController {
         if (publisher != null && author != null) {
             book.setPublisher(publisher);
             book.setAuthor(author);
-            Book createdBook = eventService.createBook(book);
+            Book createdBook = bookService.createBook(book);
             if (createdBook != null) {
                 return new ResponseEntity<>(createdBook, HttpStatus.CREATED);
             }

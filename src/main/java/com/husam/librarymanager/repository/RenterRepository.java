@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.husam.librarymanager.entities.Renter;
 
 @Repository
-public interface AttendeeRepository extends JpaRepository<Renter, Long> {
+public interface RenterRepository extends JpaRepository<Renter, Long> {
 }

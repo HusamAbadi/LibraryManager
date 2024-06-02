@@ -1,7 +1,7 @@
 package com.husam.librarymanager.service;
 
 import com.husam.librarymanager.entities.Renter;
-import com.husam.librarymanager.repository.AttendeeRepository;
+import com.husam.librarymanager.repository.RenterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,40 +10,40 @@ import java.util.Optional;
 
 @Service
 public class RenterService {
-    private final AttendeeRepository attendeeRepository;
+    private final RenterRepository renterRepository;
 
     @Autowired
-    public RenterService(AttendeeRepository attendeeRepository) {
-        this.attendeeRepository = attendeeRepository;
+    public RenterService(RenterRepository renterRepository) {
+        this.renterRepository = renterRepository;
     }
 
-    public List<Renter> getAllAttendees() {
-        return attendeeRepository.findAll();
+    public List<Renter> getAllRenters() {
+        return renterRepository.findAll();
     }
 
-    public Optional<Renter> getAttendeeById(Long id) {
-        return attendeeRepository.findById(id);
+    public Optional<Renter> getRenterById(Long id) {
+        return renterRepository.findById(id);
     }
 
-    public Renter createAttendee(Renter renter) {
-        return attendeeRepository.save(renter);
+    public Renter createRenter(Renter renter) {
+        return renterRepository.save(renter);
     }
 
-    public Renter updateAttendee(Long id, Renter updatedAttendee) {
-        Optional<Renter> existingAttendee = attendeeRepository.findById(id);
-        if (existingAttendee.isPresent()) {
-            Renter renter = existingAttendee.get();
-            renter.setName(updatedAttendee.getName());
-            renter.setEmail(updatedAttendee.getEmail());
-            return attendeeRepository.save(renter);
+    public Renter updateRenter(Long id, Renter updatedRenter) {
+        Optional<Renter> existingRenter = renterRepository.findById(id);
+        if (existingRenter.isPresent()) {
+            Renter renter = existingRenter.get();
+            renter.setName(updatedRenter.getName());
+            renter.setEmail(updatedRenter.getEmail());
+            return renterRepository.save(renter);
         }
         return null;
     }
 
-    public boolean deleteAttendee(Long id) {
-        Optional<Renter> renter = attendeeRepository.findById(id);
+    public boolean deleteRenter(Long id) {
+        Optional<Renter> renter = renterRepository.findById(id);
         if (renter.isPresent()) {
-            attendeeRepository.deleteById(id);
+            renterRepository.deleteById(id);
             return true;
         }
         return false;
