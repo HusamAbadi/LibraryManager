@@ -66,6 +66,7 @@ VALUES ('The Shining', 'Description: A horror novel about a family staying in an
 
 
 -- Insert sample data for renters
-INSERT INTO renters (name, email, book_id) VALUES ('Wisam abadi', 'wisam@example.com', 1);
-INSERT INTO renters (name, email, book_id) VALUES ('John will', 'jhon@example.com', 1);
+INSERT INTO renters (name, email, book_id) VALUES ('Husam Abadi', 'husam@example.com', 1);
+INSERT INTO renters (name, email, book_id) VALUES ('Ibrahim William', 'ibrahim@example.com', 2);
+INSERT INTO renters (name, email, book_id) VALUES ('Ahmed ali', 'ahmed@example.com', 3);
 
