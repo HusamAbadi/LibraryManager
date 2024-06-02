@@ -28,6 +28,6 @@ public class Event {
     private Publisher publisher;
 
     @ManyToOne
-    @JoinColumn(name = "presenter_id")
-    private Presenter presenter;
+    @JoinColumn(name = "author_id")
+    private Author author;
 }

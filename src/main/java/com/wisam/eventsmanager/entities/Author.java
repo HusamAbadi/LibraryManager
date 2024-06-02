@@ -5,13 +5,13 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "presenters")
-public class Presenter {
+@Table(name = "authors")
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String expertise;
+    private String profession;
 
     @ManyToOne
     @JoinColumn(name = "publisher_id")

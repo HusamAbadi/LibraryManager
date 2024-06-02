@@ -1,8 +1,0 @@
-<!-- presenter-options.html -->
-<!--<option value="">Select Publisher First</option>-->
-<option
-  th:each="presenter : ${presenters}"
-  th:value="${presenter.id}"
-  th:text="${presenter.name}"
-  th:selected="${presenter.id == 1}"
-></option>

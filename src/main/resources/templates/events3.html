@@ -15,7 +15,7 @@
           <th>Date</th>
           <th>Max num. of Attendees</th>
           <th>Publisher</th>
-          <th>Presenter</th>
+          <th>Author</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -36,8 +36,8 @@
             </a>
           </td>
           <td>
-            <a th:href="@{/presenters/{id}(id=${event.presenter.id})}">
-              <span th:text="${event.presenter.name}"></span>
+            <a th:href="@{/authors/{id}(id=${event.author.id})}">
+              <span th:text="${event.author.name}"></span>
             </a>
           </td>
 
@@ -115,7 +115,7 @@
         <select
           id="publisher"
           name="publisher.id"
-          onchange="fetchPresentersByPublisher(this.value)"
+          onchange="fetchAuthorsByPublisher(this.value)"
         >
           <option
             th:each="publisher : ${publishers}"
@@ -125,11 +125,11 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="presenter">Presenter</label>
+        <label for="author">Author</label>
         <select
-          id="presenter"
-          name="presenter.id"
-          data-current-presenter="1"
+          id="author"
+          name="author.id"
+          data-current-author="1"
         ></select>
       </div>
       <div class="form-group">

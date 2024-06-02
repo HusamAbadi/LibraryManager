@@ -46,12 +46,12 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="presenter">Presenter</label>
-        <select id="presenter" th:field="*{presenter.id}">
+        <label for="author">Author</label>
+        <select id="author" th:field="*{author.id}">
           <option
-            th:each="presenter : ${presenters}"
-            th:value="${presenter.id}"
-            th:text="${presenter.name}"
+            th:each="author : ${authors}"
+            th:value="${author.id}"
+            th:text="${author.name}"
           ></option>
         </select>
       </div>

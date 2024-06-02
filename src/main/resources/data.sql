@@ -5,11 +5,11 @@ CREATE TABLE IF NOT EXISTS publishers (
                                           description VARCHAR(255) NOT NULL
 );
 
--- Create presenters table
-CREATE TABLE IF NOT EXISTS presenters (
+-- Create authors table
+CREATE TABLE IF NOT EXISTS authors (
                                           id BIGINT PRIMARY KEY AUTO_INCREMENT,
                                           name VARCHAR(255) NOT NULL,
-                                          expertise VARCHAR(255) NOT NULL,
+                                          profession VARCHAR(255) NOT NULL,
                                           publisher_id BIGINT,
                                           FOREIGN KEY (publisher_id) REFERENCES publishers(id) ON DELETE SET NULL
 );
@@ -20,11 +20,11 @@ CREATE TABLE IF NOT EXISTS events (
                                       name VARCHAR(255) NOT NULL,
                                       description VARCHAR(255) NOT NULL,
                                       publisher_id BIGINT,
-                                      presenter_id BIGINT,
+                                      author_id BIGINT,
                                       date DATE,
                                       max_attendees INT,
                                       FOREIGN KEY (publisher_id) REFERENCES publishers(id) ON DELETE SET NULL,
-                                      FOREIGN KEY (presenter_id) REFERENCES presenters(id) ON DELETE SET NULL
+                                      FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE SET NULL
 );
 
 
@@ -45,20 +45,20 @@ INSERT INTO publishers (name, description) VALUES ('Penguin Random House', 'One 
 INSERT INTO publishers (name, description) VALUES ('HarperCollins', 'A major publishing company with a rich history, publishing a diverse array of genres, including literary fiction, romance, thrillers, and educational books');
 INSERT INTO publishers (name, description) VALUES ('Simon & Schuster', 'A prominent American publishing company, known for its broad portfolio of bestselling authors and significant contributions to literature, non-fiction, and self-help');
 
--- Insert sample data for presenters
-INSERT INTO presenters (name, expertise, publisher_id) VALUES ('Max', 'Web developer', 1);
-INSERT INTO presenters (name, expertise, publisher_id) VALUES ('Alina', 'Software engineer', 3);
-INSERT INTO presenters (name, expertise, publisher_id) VALUES ('George', 'Marketing lead', 2);
+-- Insert sample data for authors
+INSERT INTO authors (name, profession, publisher_id) VALUES ('George Orwell', 'Novelist, essayist, journalist', 1);
+INSERT INTO authors (name, profession, publisher_id) VALUES ('Harper Lee', 'Novelist', 2);
+INSERT INTO authors (name, profession, publisher_id) VALUES ('Stephen King', 'Novelist, short story writer, screenwriter', 3);
 
 
 -- Insert sample data for events
-INSERT INTO events (name, description, publisher_id, date, max_attendees, presenter_id)
+INSERT INTO events (name, description, publisher_id, date, max_attendees, author_id)
 VALUES ('Apple keynote', 'Keynote is a presentation software application developed as a part of the iWork productivity suite by Apple Inc.', 1, '2023-06-10', 2600, 1);
 
-INSERT INTO events (name, description, publisher_id, date, max_attendees, presenter_id)
+INSERT INTO events (name, description, publisher_id, date, max_attendees, author_id)
 VALUES ('Google I/O', 'Google I/O is an annual developer conference held by Google in Mountain View, California.', 2, '2023-06-10', 249, 3);
 
-INSERT INTO events (name, description, publisher_id, date, max_attendees, presenter_id)
+INSERT INTO events (name, description, publisher_id, date, max_attendees, author_id)
 VALUES ('React Dev event', 'Upcoming React Conferences in 2023', 3, '2023-06-10', 132, 2);
 
 

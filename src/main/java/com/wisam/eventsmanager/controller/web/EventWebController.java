@@ -1,11 +1,11 @@
 package com.wisam.eventsmanager.controller.web;
 
 import com.wisam.eventsmanager.entities.Event;
-import com.wisam.eventsmanager.entities.Presenter;
+import com.wisam.eventsmanager.entities.Author;
 import com.wisam.eventsmanager.entities.Publisher;
 import com.wisam.eventsmanager.service.EventService;
 import com.wisam.eventsmanager.service.PublisherService;
-import com.wisam.eventsmanager.service.PresenterService;
+import com.wisam.eventsmanager.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,24 +27,24 @@ import java.util.Optional;
 public class EventWebController {
     private final EventService eventService;
     private final PublisherService publisherService;
-    private final PresenterService presenterService;
+    private final AuthorService authorService;
 
     @Autowired
     public EventWebController(EventService eventService, PublisherService publisherService,
-            PresenterService presenterService) {
+            AuthorService authorService) {
         this.eventService = eventService;
         this.publisherService = publisherService;
-        this.presenterService = presenterService;
+        this.authorService = authorService;
     }
 
     @GetMapping
     public String getAllEvents(Model model) {
         List<Event> events = eventService.getAllEvents();
         List<Publisher> publishers = publisherService.getAllPublishers();
-        List<Presenter> presenters = presenterService.getAllPresenters();
+        List<Author> authors = authorService.getAllAuthors();
         model.addAttribute("events", events);
         model.addAttribute("publishers", publishers);
-        model.addAttribute("presenters", presenters);
+        model.addAttribute("authors", authors);
         model.addAttribute("event", new Event()); // Add this line to create a new Event object for the form
         return "events3";
     }
@@ -88,7 +88,7 @@ public class EventWebController {
             @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
             @RequestParam("maxAttendees") int maxAttendees,
             @RequestParam("publisherId") Long publisherId,
-            @RequestParam("presenterId") Long presenterId) {
+            @RequestParam("authorId") Long authorId) {
         // Create the Event object with the provided parameters
         Event event = new Event();
         event.setName(name);
@@ -96,12 +96,12 @@ public class EventWebController {
         event.setDate(date);
         event.setMaxAttendees(maxAttendees);
 
-        // Set the publisher and presenter for the event
+        // Set the publisher and author for the event
         Publisher publisher = publisherService.getPublisherById(publisherId).orElse(null);
-        Presenter presenter = presenterService.getPresenterById(presenterId).orElse(null);
-        if (publisher != null && presenter != null) {
+        Author author = authorService.getAuthorById(authorId).orElse(null);
+        if (publisher != null && author != null) {
             event.setPublisher(publisher);
-            event.setPresenter(presenter);
+            event.setAuthor(author);
             Event createdEvent = eventService.createEvent(event);
             if (createdEvent != null) {
                 return new ResponseEntity<>(createdEvent, HttpStatus.CREATED);
