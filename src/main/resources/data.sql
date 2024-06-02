@@ -53,13 +53,16 @@ INSERT INTO authors (name, profession, publisher_id) VALUES ('Stephen King', 'No
 
 -- Insert sample data for books
 INSERT INTO books (name, description, publisher_id, date, copies_num, author_id)
-VALUES ('Apple keynote', 'Keynote is a presentation software application developed as a part of the iWork productivity suite by Apple Inc.', 1, '2023-06-10', 2600, 1);
+VALUES ('1984', 'A dystopian novel set in a totalitarian society under constant surveillance, where independent thinking is suppressed and history is manipulated', 1, '1949-06-08', 20, 1);
 
 INSERT INTO books (name, description, publisher_id, date, copies_num, author_id)
-VALUES ('Google I/O', 'Google I/O is an annual developer conference held by Google in Mountain View, California.', 2, '2023-06-10', 249, 3);
+VALUES ('Animal Farm', 'This allegorical novella satirizes the Russian Revolution and the subsequent rise of Stalinism. It tells the story of a group of farm animals who overthrow their human farmer, hoping to create a society where animals can be equal, free, and happy.', 2, '1945-08-17', 28, 1);
 
 INSERT INTO books (name, description, publisher_id, date, copies_num, author_id)
-VALUES ('React Dev book', 'Upcoming React Conferences in 2023', 3, '2023-06-10', 132, 2);
+VALUES ('To Kill a Mockingbird', 'A classic novel that addresses racial injustice in the Deep South through the eyes of a young girl named Scout Finch, whose father, Atticus, is an attorney defending a black man falsely accused of raping a white woman.', 2, '1960-07-11', 14, 2);
+
+INSERT INTO books (name, description, publisher_id, date, copies_num, author_id)
+VALUES ('The Shining', 'Description: A horror novel about a family staying in an isolated hotel where the father, Jack Torrance, succumbs to supernatural influences and descends into violence and madness.', 3, '1977-01-28', 7, 3);
 
 
 -- Insert sample data for attendees

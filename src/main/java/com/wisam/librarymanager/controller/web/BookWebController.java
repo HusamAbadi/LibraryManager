@@ -46,7 +46,7 @@ public class BookWebController {
         model.addAttribute("publishers", publishers);
         model.addAttribute("authors", authors);
         model.addAttribute("book", new Book()); // Add this line to create a new Book object for the form
-        return "books3";
+        return "books";
     }
 
     @GetMapping("/{id}")
