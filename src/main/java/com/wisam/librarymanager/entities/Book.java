@@ -21,7 +21,7 @@ public class Book {
     private int copiesNum;
 
     @OneToMany(mappedBy = "book")
-    private List<Attendee> attendees;
+    private List<Renter> renters;
 
     @ManyToOne
     @JoinColumn(name = "publisher_id")

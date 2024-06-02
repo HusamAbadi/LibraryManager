@@ -55,9 +55,9 @@
 <h2 th:text="${book.name}"></h2>
 <p th:text="${book.description}"></p>
 
-<h3>Attendees:</h3>
+<h3>Renters:</h3>
 <ul>
-  <li th:each="attendee : ${book.attendees}" th:text="${attendee.name}"></li>
+  <li th:each="renter : ${book.renters}" th:text="${renter.name}"></li>
 </ul>
 
 <a th:href="@{/api/books}" class="btn btn-primary">Back to Books</a>

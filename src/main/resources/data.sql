@@ -28,13 +28,13 @@ CREATE TABLE IF NOT EXISTS books (
 );
 
 
--- Create attendees table
-CREATE TABLE IF NOT EXISTS attendees (
+-- Create renters table
+CREATE TABLE IF NOT EXISTS renters (
                                          id BIGINT PRIMARY KEY AUTO_INCREMENT,
                                          name VARCHAR(255) NOT NULL,
                                          email VARCHAR(255) NOT NULL,
-                                         event_id BIGINT,
-                                         FOREIGN KEY (event_id) REFERENCES books(id) ON DELETE SET NULL
+                                         book_id BIGINT,
+                                         FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE SET NULL
 
 
 );
@@ -65,7 +65,7 @@ INSERT INTO books (name, description, publisher_id, date, copies_num, author_id)
 VALUES ('The Shining', 'Description: A horror novel about a family staying in an isolated hotel where the father, Jack Torrance, succumbs to supernatural influences and descends into violence and madness.', 3, '1977-01-28', 7, 3);
 
 
--- Insert sample data for attendees
-INSERT INTO attendees (name, email, event_id) VALUES ('Wisam abadi', 'wisam@example.com', 1);
-INSERT INTO attendees (name, email, event_id) VALUES ('John will', 'jhon@example.com', 1);
+-- Insert sample data for renters
+INSERT INTO renters (name, email, book_id) VALUES ('Wisam abadi', 'wisam@example.com', 1);
+INSERT INTO renters (name, email, book_id) VALUES ('John will', 'jhon@example.com', 1);
 

@@ -1,7 +1,7 @@
 package com.wisam.librarymanager.controller.rest;
 
-import com.wisam.librarymanager.entities.Attendee;
-import com.wisam.librarymanager.service.AttendeeService;
+import com.wisam.librarymanager.entities.Renter;
+import com.wisam.librarymanager.service.RenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,37 +11,37 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/attendees")
-public class AttendeeRestController {
-    private final AttendeeService attendeeService;
+@RequestMapping("/api/renters")
+public class RenterRestController {
+    private final RenterService attendeeService;
 
     @Autowired
-    public AttendeeRestController(AttendeeService attendeeService) {
+    public RenterRestController(RenterService attendeeService) {
         this.attendeeService = attendeeService;
     }
 
     @GetMapping
-    public List<Attendee> getAllAttendees() {
+    public List<Renter> getAllAttendees() {
         return attendeeService.getAllAttendees();
     }
 
     @PostMapping
-    public ResponseEntity<Attendee> createAttendee(@ModelAttribute("attendeeForm") Attendee attendee) {
+    public ResponseEntity<Renter> createAttendee(@ModelAttribute("attendeeForm") Renter renter) {
 
-        Attendee createdAttendee = attendeeService.createAttendee(attendee);
+        Renter createdAttendee = attendeeService.createAttendee(renter);
         return new ResponseEntity<>(createdAttendee, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Attendee> getAttendeeById(@PathVariable Long id) {
-        Optional<Attendee> attendee = attendeeService.getAttendeeById(id);
-        return attendee.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+    public ResponseEntity<Renter> getAttendeeById(@PathVariable Long id) {
+        Optional<Renter> renter = attendeeService.getAttendeeById(id);
+        return renter.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Attendee> updateAttendee(@PathVariable Long id, @RequestBody Attendee attendee) {
-        Attendee updatedAttendee = attendeeService.updateAttendee(id, attendee);
+    public ResponseEntity<Renter> updateAttendee(@PathVariable Long id, @RequestBody Renter renter) {
+        Renter updatedAttendee = attendeeService.updateAttendee(id, renter);
         return updatedAttendee != null ? new ResponseEntity<>(updatedAttendee, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

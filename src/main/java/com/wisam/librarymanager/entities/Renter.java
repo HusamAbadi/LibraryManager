@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "attendees")
-public class Attendee {
+@Table(name = "renters")
+public class Renter {
     @Id
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +16,6 @@ public class Attendee {
     private String email;
 
     @ManyToOne
-    @JoinColumn(name = "event_id")
+    @JoinColumn(name = "book_id")
     private Book book;
 }
