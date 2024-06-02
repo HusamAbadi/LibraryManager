@@ -1,8 +1,8 @@
 package com.wisam.eventsmanager.controller.web;
 
-import com.wisam.eventsmanager.domain.Organizer;
-import com.wisam.eventsmanager.domain.Presenter;
-import com.wisam.eventsmanager.service.OrganizerService;
+import com.wisam.eventsmanager.service.PublisherService;
+import com.wisam.eventsmanager.entities.Presenter;
+import com.wisam.eventsmanager.entities.Publisher;
 import com.wisam.eventsmanager.service.PresenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,30 +15,30 @@ import java.util.List;
 @RequestMapping("/presenters")
 public class PresenterWebController {
     private final PresenterService presenterService;
-    private final OrganizerService organizerService;
+    private final PublisherService publisherService;
 
     @Autowired
-    public PresenterWebController(PresenterService presenterService, OrganizerService organizerService) {
+    public PresenterWebController(PresenterService presenterService, PublisherService publisherService) {
         this.presenterService = presenterService;
-        this.organizerService = organizerService;
+        this.publisherService = publisherService;
     }
 
     @GetMapping
     public String getPresenters(Model model) {
         List<Presenter> presenters = presenterService.getAllPresenters();
-        List<Organizer> organizers = organizerService.getAllOrganizers();
+        List<Publisher> publishers = publisherService.getAllPublishers();
         model.addAttribute("presenters", presenters);
-        model.addAttribute("organizers", organizers);
+        model.addAttribute("publishers", publishers);
         model.addAttribute("presenter", new Presenter());
         return "presenters";
     }
 
     @PostMapping
     public String createPresenter(@ModelAttribute("presenter") Presenter presenter) {
-        // Set the organizer for the presenter
-        Organizer organizer = organizerService.getOrganizerById(presenter.getOrganizer().getId()).orElse(null);
-        if (organizer != null) {
-            presenter.setOrganizer(organizer);
+        // Set the publisher for the presenter
+        Publisher publisher = publisherService.getPublisherById(presenter.getPublisher().getId()).orElse(null);
+        if (publisher != null) {
+            presenter.setPublisher(publisher);
             presenterService.createPresenter(presenter);
         }
         return "redirect:/presenters";

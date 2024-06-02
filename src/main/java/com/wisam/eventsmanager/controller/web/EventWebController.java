@@ -1,10 +1,10 @@
 package com.wisam.eventsmanager.controller.web;
 
-import com.wisam.eventsmanager.domain.Event;
-import com.wisam.eventsmanager.domain.Organizer;
-import com.wisam.eventsmanager.domain.Presenter;
+import com.wisam.eventsmanager.entities.Event;
+import com.wisam.eventsmanager.entities.Presenter;
+import com.wisam.eventsmanager.entities.Publisher;
 import com.wisam.eventsmanager.service.EventService;
-import com.wisam.eventsmanager.service.OrganizerService;
+import com.wisam.eventsmanager.service.PublisherService;
 import com.wisam.eventsmanager.service.PresenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -26,23 +26,24 @@ import java.util.Optional;
 @RequestMapping("/events")
 public class EventWebController {
     private final EventService eventService;
-    private final OrganizerService organizerService;
+    private final PublisherService publisherService;
     private final PresenterService presenterService;
 
     @Autowired
-    public EventWebController(EventService eventService, OrganizerService organizerService, PresenterService presenterService) {
+    public EventWebController(EventService eventService, PublisherService publisherService,
+            PresenterService presenterService) {
         this.eventService = eventService;
-        this.organizerService = organizerService;
+        this.publisherService = publisherService;
         this.presenterService = presenterService;
     }
 
     @GetMapping
     public String getAllEvents(Model model) {
         List<Event> events = eventService.getAllEvents();
-        List<Organizer> organizers = organizerService.getAllOrganizers();
+        List<Publisher> publishers = publisherService.getAllPublishers();
         List<Presenter> presenters = presenterService.getAllPresenters();
         model.addAttribute("events", events);
-        model.addAttribute("organizers", organizers);
+        model.addAttribute("publishers", publishers);
         model.addAttribute("presenters", presenters);
         model.addAttribute("event", new Event()); // Add this line to create a new Event object for the form
         return "events3";
@@ -65,8 +66,8 @@ public class EventWebController {
         Optional<Event> event = eventService.getEventById(id);
         if (event.isPresent()) {
             model.addAttribute("event", event.get());
-            List<Organizer> organizers = organizerService.getAllOrganizers();
-            model.addAttribute("organizers", organizers);
+            List<Publisher> publishers = publisherService.getAllPublishers();
+            model.addAttribute("publishers", publishers);
             return "event-update";
         } else {
             // Handle the case when the event is not found
@@ -86,7 +87,7 @@ public class EventWebController {
             @RequestParam("description") String description,
             @RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
             @RequestParam("maxAttendees") int maxAttendees,
-            @RequestParam("organizerId") Long organizerId,
+            @RequestParam("publisherId") Long publisherId,
             @RequestParam("presenterId") Long presenterId) {
         // Create the Event object with the provided parameters
         Event event = new Event();
@@ -95,11 +96,11 @@ public class EventWebController {
         event.setDate(date);
         event.setMaxAttendees(maxAttendees);
 
-        // Set the organizer and presenter for the event
-        Organizer organizer = organizerService.getOrganizerById(organizerId).orElse(null);
+        // Set the publisher and presenter for the event
+        Publisher publisher = publisherService.getPublisherById(publisherId).orElse(null);
         Presenter presenter = presenterService.getPresenterById(presenterId).orElse(null);
-        if (organizer != null && presenter != null) {
-            event.setOrganizer(organizer);
+        if (publisher != null && presenter != null) {
+            event.setPublisher(publisher);
             event.setPresenter(presenter);
             Event createdEvent = eventService.createEvent(event);
             if (createdEvent != null) {
@@ -108,8 +109,6 @@ public class EventWebController {
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
-
-
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {

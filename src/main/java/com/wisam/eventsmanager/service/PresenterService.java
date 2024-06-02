@@ -1,8 +1,8 @@
 package com.wisam.eventsmanager.service;
 
-import com.wisam.eventsmanager.domain.Organizer;
-import com.wisam.eventsmanager.domain.Presenter;
-import com.wisam.eventsmanager.repository.OrganizerRepository;
+import com.wisam.eventsmanager.repository.PublisherRepository;
+import com.wisam.eventsmanager.entities.Presenter;
+import com.wisam.eventsmanager.entities.Publisher;
 import com.wisam.eventsmanager.repository.PresenterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +13,12 @@ import java.util.Optional;
 @Service
 public class PresenterService {
     private final PresenterRepository presenterRepository;
-    private final OrganizerService organizerService;
+    private final PublisherService publisherService;
 
     @Autowired
-    public PresenterService(PresenterRepository presenterRepository, OrganizerService organizerService) {
+    public PresenterService(PresenterRepository presenterRepository, PublisherService publisherService) {
         this.presenterRepository = presenterRepository;
-        this.organizerService = organizerService;
+        this.publisherService = publisherService;
     }
 
     public List<Presenter> getAllPresenters() {
@@ -30,9 +30,9 @@ public class PresenterService {
     }
 
     public Presenter createPresenter(Presenter presenter) {
-        Optional<Organizer> organizer = organizerService.getOrganizerById(presenter.getOrganizer().getId());
-        if (organizer.isPresent()) {
-            presenter.setOrganizer(organizer.get());
+        Optional<Publisher> publisher = publisherService.getPublisherById(presenter.getPublisher().getId());
+        if (publisher.isPresent()) {
+            presenter.setPublisher(publisher.get());
             return presenterRepository.save(presenter);
         }
         return null;
@@ -44,7 +44,7 @@ public class PresenterService {
             Presenter presenter = existingPresenter.get();
             presenter.setName(updatedPresenter.getName());
             presenter.setExpertise(updatedPresenter.getExpertise());
-            presenter.setOrganizer(updatedPresenter.getOrganizer());
+            presenter.setPublisher(updatedPresenter.getPublisher());
             return presenterRepository.save(presenter);
         }
         return null;
@@ -59,7 +59,7 @@ public class PresenterService {
         return false;
     }
 
-    public List<Presenter> getAllPresentersByOrganizer(Long organizerId) {
-        return presenterRepository.findByOrganizerId(organizerId);
+    public List<Presenter> getAllPresentersByPublisher(Long publisherId) {
+        return presenterRepository.findByPublisherId(publisherId);
     }
 }

@@ -1,4 +1,4 @@
-package com.wisam.eventsmanager.domain;
+package com.wisam.eventsmanager.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -14,6 +14,6 @@ public class Presenter {
     private String expertise;
 
     @ManyToOne
-    @JoinColumn(name = "organizer_id")
-    private Organizer organizer;
+    @JoinColumn(name = "publisher_id")
+    private Publisher publisher;
 }

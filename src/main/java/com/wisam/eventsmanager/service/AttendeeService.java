@@ -1,6 +1,6 @@
 package com.wisam.eventsmanager.service;
 
-import com.wisam.eventsmanager.domain.Attendee;
+import com.wisam.eventsmanager.entities.Attendee;
 import com.wisam.eventsmanager.repository.AttendeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

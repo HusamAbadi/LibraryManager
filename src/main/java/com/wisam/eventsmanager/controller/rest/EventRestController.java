@@ -1,8 +1,9 @@
 package com.wisam.eventsmanager.controller.rest;
 
 import ch.qos.logback.core.model.Model;
-import com.wisam.eventsmanager.domain.Event;
-import com.wisam.eventsmanager.domain.Organizer;
+
+import com.wisam.eventsmanager.entities.Event;
+import com.wisam.eventsmanager.entities.Publisher;
 import com.wisam.eventsmanager.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

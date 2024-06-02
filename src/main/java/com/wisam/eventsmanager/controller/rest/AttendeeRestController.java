@@ -1,6 +1,6 @@
 package com.wisam.eventsmanager.controller.rest;
 
-import com.wisam.eventsmanager.domain.Attendee;
+import com.wisam.eventsmanager.entities.Attendee;
 import com.wisam.eventsmanager.service.AttendeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
 package com.wisam.eventsmanager.controller.web;
 
-import com.wisam.eventsmanager.domain.Attendee;
-import com.wisam.eventsmanager.domain.Event;
+import com.wisam.eventsmanager.entities.Attendee;
+import com.wisam.eventsmanager.entities.Event;
 import com.wisam.eventsmanager.service.AttendeeService;
 import com.wisam.eventsmanager.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;

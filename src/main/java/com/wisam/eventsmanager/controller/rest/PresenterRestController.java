@@ -1,8 +1,8 @@
 package com.wisam.eventsmanager.controller.rest;
 
-import com.wisam.eventsmanager.domain.Organizer;
-import com.wisam.eventsmanager.domain.Presenter;
-import com.wisam.eventsmanager.service.OrganizerService;
+import com.wisam.eventsmanager.service.PublisherService;
+import com.wisam.eventsmanager.entities.Presenter;
+import com.wisam.eventsmanager.entities.Publisher;
 import com.wisam.eventsmanager.service.PresenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,22 +11,23 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/presenters")
 public class PresenterRestController {
     private final PresenterService presenterService;
-    private final OrganizerService organizerService;
+    private final PublisherService publisherService;
 
     @Autowired
-    public PresenterRestController(PresenterService presenterService, OrganizerService organizerService) {
+    public PresenterRestController(PresenterService presenterService, PublisherService publisherService) {
         this.presenterService = presenterService;
-        this.organizerService = organizerService;
+        this.publisherService = publisherService;
     }
 
     @GetMapping
-    public List<Presenter> getAllPresenters(@RequestParam(required = false) Long organizerId) {
-        if (organizerId != null) {
-            return presenterService.getAllPresentersByOrganizer(organizerId);
+    public List<Presenter> getAllPresenters(@RequestParam(required = false) Long publisherId) {
+        if (publisherId != null) {
+            return presenterService.getAllPresentersByPublisher(publisherId);
         } else {
             return presenterService.getAllPresenters();
         }
@@ -39,12 +40,12 @@ public class PresenterRestController {
     }
 
     @PostMapping
-        public ResponseEntity<Presenter> createPresenter(@ModelAttribute("presenterForm") Presenter presenter) {
+    public ResponseEntity<Presenter> createPresenter(@ModelAttribute("presenterForm") Presenter presenter) {
 
-        Long organizerId = presenter.getOrganizer().getId();
-        Optional<Organizer> organizer = organizerService.getOrganizerById(organizerId);
-        if (organizer.isPresent()) {
-            presenter.setOrganizer(organizer.get());
+        Long publisherId = presenter.getPublisher().getId();
+        Optional<Publisher> publisher = publisherService.getPublisherById(publisherId);
+        if (publisher.isPresent()) {
+            presenter.setPublisher(publisher.get());
             Presenter createdPresenter = presenterService.createPresenter(presenter);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdPresenter);
         }

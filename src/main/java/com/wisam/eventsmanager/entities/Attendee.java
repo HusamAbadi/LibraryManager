@@ -1,4 +1,4 @@
-package com.wisam.eventsmanager.domain;
+package com.wisam.eventsmanager.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;

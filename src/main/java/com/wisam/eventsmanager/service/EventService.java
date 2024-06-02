@@ -1,6 +1,6 @@
 package com.wisam.eventsmanager.service;
 
-import com.wisam.eventsmanager.domain.Event;
+import com.wisam.eventsmanager.entities.Event;
 import com.wisam.eventsmanager.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,8 +46,9 @@ public class EventService {
         }
         return false;
     }
-    public List<Event> getEventsByOrganizerId(Long organizerId) {
-        return eventRepository.findByOrganizerId(organizerId);
+
+    public List<Event> getEventsByPublisherId(Long publisherId) {
+        return eventRepository.findByPublisherId(publisherId);
     }
 
 }
