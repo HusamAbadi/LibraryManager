@@ -1,0 +1,8 @@
+<!-- author-options.html -->
+<!--<option value="">Select Publisher First</option>-->
+<option
+  th:each="author : ${authors}"
+  th:value="${author.id}"
+  th:text="${author.name}"
+  th:selected="${author.id == 1}"
+></option>
